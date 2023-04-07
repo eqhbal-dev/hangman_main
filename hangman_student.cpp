@@ -1,4 +1,4 @@
-//the hangman game also as known as the word guessing name !!!!!!!!!!!!!!!!!!!
+//the hangman game
 
 #include <iostream>
 #include <string.h>
@@ -7,7 +7,7 @@
 using namespace std;
 
 int word_chooser(string data[3]);
-bool check(char temp_data[], char window_data[], int size,  char character, string word);
+bool check(char window_data[], int size,  char character, string word);
 bool end_check(char data[], int size);
 bool end_check(char data[], int size);
 
@@ -23,7 +23,7 @@ int main()
         string game_word = main_data[word_chooser(main_data)];
         int hearts = 5 , len = game_word.length();
         char player_guess, answer;
-        char player_data[len] ,temp_data[len] ;
+        char player_data[len];
         cout << "HEARTS : " << hearts << endl;
         for (int i = 0; i < len; i++)
         {
@@ -34,7 +34,7 @@ int main()
             cout << "Enter a word for guess : " << endl;
             cin >> player_guess;
     
-            if (check(temp_data , player_data , len , player_guess , game_word) == true)
+            if (check(player_data , len , player_guess , game_word) == true)
             {
                 cout << "succed : ";
                 for (int i = 0; i < len; i++)
@@ -91,46 +91,22 @@ int word_chooser(string data[3])
     return random;
 }
 
-bool check(char temp_data[], char window_data[], int size, char character, string word)
+bool check(char window_data[], int size, char character, string word)
 {
-    bool checker = false;
-    for (int i = 0; i < word.length(); i++)
-    {
-        temp_data[i] = word[i]; 
-    }
-    for (int i = 0; i < size; i++)
-    {
-        if (window_data[i] == '_')
-        {
-            if (character == temp_data[i])
-            {
-                window_data[i] = character;
-                checker = true;
-
-                return checker;
-            }
-        }
-
-    }
-    return checker;
+    // تابع مورد نظر جهت چک کردن حرف ورودی کاربر با کلمه اصلی است در صورتی بودن یا نبودن حرف در کلمه اصلی 
+    // true یا false
+    // برگرداند
+    // window_data : ارایه ای که در صفحه به کاربر نشان داده میشود (باید هر دفعه ریست شود)
+    // size : اندازه ارایه اصلی
+    // character : کاراکتر وارد شده توسط کاربر
+    // word : کلمه انتخاب شده توسط برنامه
+    // کد خود را اینحا بنویسید
 }
 
 bool end_check(char data[], int size)
 {
-    int counter = 0;
-    for (int i = 0; i < size; i++)
-    {
-        if (data[i] == '_')
-        counter++;
-    }
-    if (counter > 0)
-    {
-        //the game hasnt ended yet:
-        return false;
-    }
-    else if (counter == 0)
-    {
-        //the game has ended :
-        return true;
-    }
+    // تابع مورد نظر برای چک کردن ان است که ایا تمام حروف حدس زده شده یا خیر
+    // data : ارایه ای شامل تمام حروف حدس زده شده
+    // size : اندازه ارایه
+    // کد خود را اینجا بنویسید
 }
